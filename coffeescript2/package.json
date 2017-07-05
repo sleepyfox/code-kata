@@ -6,7 +6,7 @@
   "scripts": {
     "compile": "coffee -c checkout.coffee",
     "test": "mocha -R spec --compilers coffee:coffeescript/register test.coffee",
-    "watch": "npm run compile && mocha -R nyan -w --compilers coffee:coffeescript/register test.coffee"
+    "watch": "mocha -R nyan -w --compilers coffee:coffeescript/register test.coffee"
   },
   "dependencies": {
     "chai": "^4.0.2",

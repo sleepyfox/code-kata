@@ -8,18 +8,34 @@
           this.items.push(x);
           return this;
         },
-        bogof: function() {
-          var count_offer_items, discount;
-          count_offer_items = this.items.filter(function(x) {
-            return x.code === 'MOH';
+        count: function(c) {
+          return this.items.filter(function(x) {
+            return x.code === c;
           }).length;
-          return discount = -169 * Math.floor(count_offer_items / 2);
+        },
+        bogof: function() {
+          var count, discount;
+          count = this.count('MOH');
+          return discount = -169 * Math.floor(count / 2);
+        },
+        bulk_discount: function() {
+          var count;
+          count = this.count('EQE');
+          if (count >= 3) {
+            return -50 * count;
+          } else {
+            return 0;
+          }
         },
         total: function() {
           var sum;
           this.items.push({
             code: 'BOGOF',
             price: this.bogof()
+          });
+          this.items.push({
+            code: 'BULK',
+            price: this.bulk_discount()
           });
           sum = function(acc, x) {
             return acc + x.price;
