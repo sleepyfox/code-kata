@@ -1,4 +1,5 @@
 should = require('chai').should()
+Checkout = require './checkout.coffee'
 
 COFFEE =
   code: 'IEB'
@@ -7,24 +8,6 @@ COFFEE =
 HOBNOBS =
   code: 'MOH'
   price: 169
-  
-Checkout =
-  new: ->
-    items: []
-    scan: (x) ->
-      @items.push(x) # slightly :-/ because mutable state
-      @ # return this for fluent API
-    bogof: ->
-      count_offer_items = @items
-                          .filter (x) -> x.code is 'MOH'
-                          .length
-      discount = 169 * Math.floor(count_offer_items / 2)
-    total: ->
-      @items.push
-        code: 'BOGOF'
-        price: @bogof()
-      sum = (acc, x) -> acc + x.price
-      @items.reduce sum, 0
   
 describe 'A checkout, when no items have been scanned', ->
   checkout = Checkout.new()
@@ -41,6 +24,7 @@ describe 'A checkout, when no items have been scanned', ->
     .bogof()
     .should.equal 169
     
+
 describe 'A checkout after scanning', ->
   describe 'a packaet of hobnobs and a coffee', ->
     checkout = Checkout.new()
