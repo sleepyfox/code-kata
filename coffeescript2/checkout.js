@@ -6,6 +6,7 @@
         items: [],
         scan: function(x) {
           this.items.push(x);
+          console.log('beep');
           return this;
         },
         count: function(c) {

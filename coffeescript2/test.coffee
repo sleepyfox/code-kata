@@ -17,22 +17,26 @@ EGGS =
 
 # Checkout unit tests
 describe 'A checkout, when no items have been scanned', ->
-  checkout = Checkout.new()
   it 'should have a total of zero', ->
-    checkout.total().should.equal 0
+    Checkout.new()
+    .total()
+    .should.equal 0
 
   it 'should be able to scan an item', ->
-    checkout.scan(COFFEE).total().should.equal 650
+    Checkout.new()
+    .scan(COFFEE)
+    .total()
+    .should.equal 650
 
   it 'should recognise a BOGOF', ->
-    checkout
+    Checkout.new()
     .scan HOBNOBS
     .scan HOBNOBS
     .bogof()
     .should.equal -169
 
   it 'should recognise a bulk discount', ->
-    checkout
+    Checkout.new()
     .scan EGGS
     .scan EGGS
     .scan EGGS
@@ -41,28 +45,25 @@ describe 'A checkout, when no items have been scanned', ->
 
 # Integration tests
 describe 'A checkout after scanning', ->
-  describe 'a packaet of hobnobs and a coffee', ->
-    checkout = Checkout.new()
+  describe 'a packet of hobnobs and a coffee', ->
     it 'should total £8.19', ->
-      checkout
+      Checkout.new()
       .scan HOBNOBS
       .scan COFFEE
       .total()
       .should.equal 819
       
   describe 'two packets of hobnobs', ->
-    checkout = Checkout.new()
     it 'should total £1.69', ->
-      checkout
+      Checkout.new()
       .scan HOBNOBS
       .scan HOBNOBS
       .total()
       .should.equal 169
 
   describe 'three hobnobs, one eggs and one coffee', ->
-    checkout = Checkout.new()
     it 'should total £12.58', ->
-      checkout
+      Checkout.new()
       .scan HOBNOBS
       .scan EGGS
       .scan HOBNOBS
@@ -72,9 +73,8 @@ describe 'A checkout after scanning', ->
       .should.equal 1258
 
   describe 'three eggs and a packet of hobnobs', ->
-    checkout = Checkout.new()
     it 'should total £8.29', ->
-      checkout
+      Checkout.new()
       .scan EGGS
       .scan EGGS
       .scan HOBNOBS
