@@ -8,6 +8,10 @@ COFFEE =
 HOBNOBS =
   code: 'MOH'
   price: 169
+
+EGGS =
+  code: 'EQE'
+  price: 270
   
 describe 'A checkout, when no items have been scanned', ->
   checkout = Checkout.new()
@@ -44,10 +48,19 @@ describe 'A checkout after scanning', ->
       .total()
       .should.equal 169
 
+  describe 'three hobnobs, one eggs and one coffee', ->
+    checkout = Checkout.new()
+    it 'should total £12.58', ->
+      checkout
+      .scan HOBNOBS
+      .scan EGGS
+      .scan HOBNOBS
+      .scan HOBNOBS
+      .scan COFFEE
+      .total()
+      .should.equal 1258
+      
 ### Integration tests
-Basket contents: MOH, EQE, MOH, MOH, IEB
-Total price expected: £12.58
-
 Basket contents: EQE, EQE, MOH, EQE 
 Total price expected: £8.29
 ###
