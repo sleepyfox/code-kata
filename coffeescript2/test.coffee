@@ -1,5 +1,5 @@
 should = require('chai').should()
-Checkout = require './checkout.coffee'
+Checkout = require './checkout'
 
 COFFEE =
   code: 'IEB'
@@ -22,7 +22,7 @@ describe 'A checkout, when no items have been scanned', ->
     .scan HOBNOBS
     .scan HOBNOBS
     .bogof()
-    .should.equal 169
+    .should.equal -169
     
 
 describe 'A checkout after scanning', ->
@@ -35,7 +35,7 @@ describe 'A checkout after scanning', ->
       .total()
       .should.equal 819
       
-  describe.skip 'two packets of hobnobs', ->
+  describe 'two packets of hobnobs', ->
     checkout = Checkout.new()
     it 'should total £1.69', ->
       checkout
