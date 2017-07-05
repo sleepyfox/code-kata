@@ -1,0 +1,29 @@
+{
+  "name": "code-kata",
+  "version": "1.0.0",
+  "description": "Yet another shopping basket kata",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha -R spec --compilers coffee:coffeescript/register test.coffee",
+    "watch": "mocha -R nyan -w --compilers coffee:coffeescript/register test.coffee"
+  },
+  "dependencies": {
+    "chai": "^4.0.2",
+    "coffeescript": "^2.0.0-beta3",
+    "mocha": "^3.4.2"
+  },
+  "engines": {
+    "node": "8.1.x"
+  },
+  "repository": {
+    "url": "https://github.com/GowerStreet/code-kata"
+  },
+  "license": "GPL-3.0",
+  "keywords": [
+    "node",
+    "kata",
+    "shopping"
+  ],
+  "author": "@sleepyfox",
+  "private": true
+}
